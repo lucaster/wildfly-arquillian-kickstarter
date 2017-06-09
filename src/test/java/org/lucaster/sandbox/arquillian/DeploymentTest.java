@@ -20,9 +20,6 @@ import org.lucaster.sandbox.arquillian.service.api.FooService;
 import org.lucaster.sandbox.arquillian.service.impl.PojoBarService;
 import org.lucaster.sandbox.arquillian.service.impl.PojoFooService;
 
-/**
- * @author <a href="mailto:mjobanek@redhat.com">Matous Jobanek</a>
- */
 @RunWith(Arquillian.class)
 public class DeploymentTest {
 
@@ -31,7 +28,8 @@ public class DeploymentTest {
 
 		final File beansXml = new File("src/test/resources/beans.xml");
 
-		// Ambiguous dependencies because defaults to bean-discovery-mode="all"
+		// This gives ambiguous dependencies because ut defaults to
+		// bean-discovery-mode="all"
 		final Asset empty = EmptyAsset.INSTANCE;
 
 		System.out.println("======================================");
@@ -55,11 +53,16 @@ public class DeploymentTest {
 
 	@Test
 	public void injectsBarService() {
-		assertNotNull(this.barService);
+		assertNotNull(barService);
 	}
 
 	@Test
 	public void injectsFooService() {
-		assertNotNull(this.fooService);
+		assertNotNull(fooService);
+	}
+
+	@Test
+	public void barServiceWorks() {
+		barService.getBar();
 	}
 }

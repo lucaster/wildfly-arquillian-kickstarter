@@ -9,16 +9,23 @@ import org.lucaster.sandbox.arquillian.service.api.FooService;
 import org.lucaster.sandbox.arquillian.service.impl.PojoBarService;
 import org.lucaster.sandbox.arquillian.service.impl.PojoFooService;
 
+/**
+ * This is the only class that needs to be annotated with a CDI-specific
+ * annotation
+ *
+ * @author Luca Cavagnoli
+ *
+ */
 @ApplicationScoped
 public class CdiConfiguration {
 
 	@Produces
-	public BarService getBarService(@New PojoBarService barService) {
+	public BarService getBarService(@New final PojoBarService barService) {
 		return barService;
 	}
 
 	@Produces
-	public FooService getFooService(@New PojoFooService fooService) {
+	public FooService getFooService(@New final PojoFooService fooService) {
 		return fooService;
 	}
 }
